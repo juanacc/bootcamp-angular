@@ -1,0 +1,11 @@
+Hacer que las animaciones funcionen con Angular 4+
+Con el lanzamiento de Angular 4 , la sintaxis general de Angular Animations no cambió . 
+
+Sin embargo, las funciones de animación se movieron a su propio paquete y ahora también necesita agregar un módulo especial a su imports[]  matriz en AppModule .
+
+En concreto, se requieren los siguientes ajustes:
+
+Probablemente necesite instalar el nuevo paquete de animaciones  (ejecutar el comando nunca está de más):npm install --save @angular/animations 
+Agregue el BrowserAnimationsModule  a su imports[]  matriz en AppModule
+Este módulo debe importarse desde @angular/platform-browser/animations'  =>  import { BrowserAnimationsModule } from '@angular/platform-browser/animations'  (¡en AppModule !)
+Luego importa trigger , state , style  etc. desde @angular/animations  en lugar de@angular/core 

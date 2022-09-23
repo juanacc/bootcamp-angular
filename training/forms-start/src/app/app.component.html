@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="nav nav-tabs">
+        <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><a
+            routerLink="/">Home</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/template">Template Driven Form</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/reactive">Reactive Form</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 6px;">
+    <router-outlet></router-outlet>
+  </div>
+</div>

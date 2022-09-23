@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <form [formGroup]="signupForm" (ngSubmit)="submitForm()">
+                <div formGroupName="userData">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" formControlName="username">
+                        <!-- <input type="text" id="username" class="form-control" [formControlName]="'username'"> es lo mismo que la linea anterior-->
+                        <span class="help-control"
+                            *ngIf="!signupForm.get('userData.username').valid && signupForm.get('userData.username').touched"
+                            class="help-block">
+                            <span *ngIf="signupForm.get('userData.username').errors['nameIsForbidden']">This name is
+                                invalid</span>
+                            <span *ngIf="signupForm.get('userData.username').errors['required']">This field is
+                                required</span>
+                        </span>
+
+                        <span
+                            *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched">
+                            <span class="help-block"
+                                *ngIf="!signupForm.get('userData.username').errors['nameIsForbidden']">This name is
+                                invalid</span> This field is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">email</label>
+                        <input type="text" id="email" class="form-control" formControlName="email">
+                        <span class="help-block"
+                            *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched">Please
+                            enter a valid email</span>
+                    </div>
+                </div>
+                <div class="radio" *ngFor="let gender of genders">
+                    <label>
+                        <input type="radio" [value]="gender" formControlName="gender">{{ gender }}
+                    </label>
+                </div>
+                <div formArrayName="hobbies">
+                    <h4>Your Hobbies</h4>
+                    <button class="btn btn-default" type="button" (click)="addHobby()">Add Hobby</button>
+                    <div class="form-group" *ngFor="let hobbyControl of getControls();let i=index">
+                        <input type="text" class="form-control" [formControlName]="i">
+                    </div>
+                </div>
+                <span class="help-control" *ngIf="!signupForm.valid && signupForm.touched">Please enter a valid
+                    data</span>
+                <div class="m-t-2">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-6">
+            <div>
+                <h1>Tarea</h1>
+                <button class="btn btn-primary" (click)="showDescription()">{{buttonTitle}}</button>
+                <div *ngIf="showStatement">
+                    <h4>Create a Form with the following Controls and Validators</h4>
+                    <p>1) Project name (should not be empty)</p>
+                    <p>2) Mail (should not be empty and valid email)</p>
+                    <p>3) Project Status Dropdown, whith three values: 'Stable', 'Critical', 'Finished</p>
+                    <p>4) Submit Button</p>
+
+                    <span>Add your own Validator which doesn't allow "Test as a Project Name</span>
+                    <span>Also implement that Validator as an async Validator (replace the other one)</span>
+                    <span>Upon submittin the form, simply print the value to the console</span>
+                </div>
+            </div>
+            <div>
+                <form [formGroup]="projectTaskForm" (ngSubmit)="submitFormTask()">
+                    <label for="projectname">Project Name</label>
+                    <input type="text" id="projectname" class="form-control" formControlName="projectname">
+                    <span class="help-control"
+                        *ngIf="!projectTaskForm.get('projectname').valid && projectTaskForm.get('projectname').touched"
+                        class="help-block">
+                        <span *ngIf="projectTaskForm.get('projectname').errors['projectNameIsForbidden']">This name is
+                            invalid</span>
+                        <span *ngIf="projectTaskForm.get('projectname').errors['required']">This field is
+                            required</span>
+                    </span>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" formControlName="email">
+                    <span class="help-block"
+                        *ngIf="!projectTaskForm.get('email').valid && projectTaskForm.get('email').touched">Please
+                        enter a valid email</span>
+                    <div class="form-group">
+                        <label for="projectstate">Project State</label>
+                        <select id="projectstate" class="form-control" formControlName="projectstate">
+                            <option value="stable">Stable</option>
+                            <option value="critital">Critical</option>
+                            <option value="finished">Finished</option>
+                        </select>
+                    </div>
+                    <div class="m-t-2">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

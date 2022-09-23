@@ -1,0 +1,27 @@
+<div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="!isLoading" class="panel p-l-8 p-r-8">
+    <h1 class="title">Products available in {{superName}} supermarket</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of supermarket.products;let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td class="green-color">{{product.name}}</td>
+                <td class="green-color">${{product.price}}</td>
+                <td
+                    [ngClass]="{'little-stock': product.stock < stockLimit, 'green-color': product.stock >= stockLimit}">
+                    {{product.stock}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

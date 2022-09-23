@@ -1,0 +1,14 @@
+<div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+
+<a class="list-group-item clearfix m-b-8 m-t-8 p-t-8 p-b-8" *ngFor="let super of supermarkets" style="cursor: pointer;"
+    routerLinkActive="active" [routerLink]="[super.id]">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading">{{super.name}}</h4>
+        <p class="list-group-item-text">{{super.address}}</p>
+    </div>
+    <span class="pull-right">
+        <img [src]="" alt="" class="img-responsive" style="max-height: 50px;">
+    </span>
+</a>

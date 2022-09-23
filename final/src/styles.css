@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #fafafa;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.m-b-8 {
+    margin-bottom: 8px;
+}
+
+.m-t-8 {
+    margin-top: 8px;
+}
+
+.p-b-8 {
+    padding-bottom: 8px;
+}
+
+.p-t-8 {
+    padding-top: 8px;
+}
+
+.m-l-8 {
+    margin-left: 8px;
+}
+
+.m-r-8 {
+    margin-right: 8px;
+}
+
+.p-l-8 {
+    padding-left: 8px;
+}
+
+.p-r-8 {
+    padding-right: 8px;
+}
+
+.title {
+    color: #a96464;
+}
+
+.little-stock {
+    color: red;
+    font-weight: bold;
+}
+
+.green-color {
+    color: green;
+}

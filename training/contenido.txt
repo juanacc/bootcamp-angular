@@ -1,0 +1,81 @@
+Creacion de nuevo proyecto:
+	ng new proyect_name --no-strict o ng new proyect_name --strict=false
+		--no-strict desabilita el modo estricto. Si no lo desabilite al crear el proyecto, puedo hacerlo en el archivo tsconfig.json poniendo:
+			strict: false
+Ejecutar el proyecto
+	ng serve
+Instalar bootstrap
+	 npm install --save bootstrap@3
+Crear componente con CLI
+	ng generate component component_name 
+	o 
+	ng g c component_name si no quiero que se agregue el archivo de los tests pongo ng g c --skip-tests=true component_name 
+Databindig
+	String Interpolation--> {{data}}
+	Property Binding    --> [property]="data"
+		-los corchetes indican que estamos usando el enlace de propiedad.
+		-entre las comillas se puede escribir codigo typescript, por ej una expresion o un metodo
+	Event Binding       --> (event)="expression"
+		-entre las comillas se puede escribir tambien el codigo que quiero ejecutar, siempre y cuando no sea demasiado
+
+		ACLARACION: todas las propiedades y eventos se pueden vincular a un elemento. Para saber que propiedades y eventos tiene un elemento se puede buscar en google:
+			YOUR_ELEMENT properties o YOUR_ELEMENT events
+
+	Two way binding     --> [(ngModel)]="data"
+		-para poder usar la directiva ngModel, se debe importar FormsModule en el array imports de appModule. Previamente se debe importar, import { FormsModule } from '@angular/forms';
+
+Directivas
+	son instrucciones en el DOM
+	*ngIf es una directiva estructural dado que cambia la estructura del DOM
+	ngStyle es una directiva de atributos
+		se puede usar ngStyle de estas formas:
+			[ngStyle]="{'background-color': red}" o [ngStyle]="{backgroundColor: red}"
+	ngClass es una directiva de atributo y permite agregar o eliminar dinamicamente clases
+
+Agregar source a imagen
+	<img [src]="recipe.imagePath">
+	o
+	<img src="{{recipe.imagePath}}">
+
+Referencias locales
+	Por ej, tenemos el siguiente input:
+		<input type="text" class="form-control" #serverNameInput>
+		con #serverNameInput, tenemos una referencia local al input que solo sera accesible desde la plantilla html pero NO podemos acceder a dicho input desde el .ts
+		Existe otra forma para poder obtener acceso a una referencia local desde .ts usando ViewChild y es la siguiente:
+			en el .ts definimos lo siguiente:
+				@ViewChild('serverNameInput', { static: true }) serverNameInput: ElementRef;//{ static: true } se agrega si voy a usar el elemento en ngOnInit
+				de esta forma, ahora podemos acceder al elemento input html desde .ts
+					this.serverNameInput.nativeElement.value
+
+Ciclo de vida
+	ngOnChanges-->se ejecuta siempre al crearse el componente y tambien cada vez que alguna propiedad de entrada enlazada en el html cambia(las que usan @input)
+	ngOnInit-->se ejecuta una vez que el componente se inicializo. Se ejecuta despues del constructor
+	ngDoCheck-->???
+	ngAfterContentInit-->se ejecuta cada vez que el contenido que se proyecta a traves de ng-content se ha inicializado
+	ngAfterContentChecked-->se ejecuta cada vez que la deteccion de cambios verifica el contenido que estamos proyectando en nuestro componente
+	ngAfterViewInit-->se ejecuta una vez que la vista del componente ha terminado de inicializarse
+	ngAfterViewChecked-->??
+	ngngOnDestroy-->se ejecuta justo antes de que un objeto sea destruido por angular. Por ej si ponemos un *ngIf y el mismo se evalua en false
+
+Directivas personalizadas
+	para crearla, se crea una clase y se le agrega el decorador @Directive al cual se le debe pasar un objeto de configuracion:
+		@Directive({
+			selector: ['selector_name']
+		})
+		
+		el selector se pone entre corchetes para que podamos usarlo en el html solo poniendo el nombre de la directiva y SIN los corchetes
+		Luego de crear la directiva hay que agregarla al modulo, en el array "declaration"
+	la diretiva tambien se puede crear con ng g d directive_name
+	si el valor que voy a pasar a la directiva como parametro es un string, puedo hacer lo siguiente:
+		<p defaultColor="yellow">Style me with better directive!</p>
+		en lugar de esto
+		<p [defaultColor]="'yellow'">Style me with better directive!</p>
+				
+
+Formularios
+	Check out the Validators class: https://angular.io/api/forms/Validators - these are all built-in validators, though that are the methods which actually get executed (and which you later can add when using the reactive approach).
+
+For the template-driven approach, you need the directives. You can find out their names, by searching for "validator" in the official docs: https://angular.io/api?type=directive - everything marked with "D" is a directive and can be added to your template.
+
+Additionally, you might also want to enable HTML5 validation (by default, Angular disables it). You can do so by adding the ngNativeValidate  to a control in your template.
+	

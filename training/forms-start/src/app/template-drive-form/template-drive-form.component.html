@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <h1>Explicacacion del curso</h1>
+            <div>
+                <form (ngSubmit)="submitForm()" #form="ngForm">
+                    <div id="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <!-- PARA MARCAR EL BORDE EN ROJO SE APLICA EL ESTILO CSS QUE DEFINI EN app.component.css -->
+                            <input type="text" id="username" class="form-control" ngModel name="username" required>
+                        </div>
+                        <button class="btn btn-default" type="button" (click)="suggestUserName()">Suggest an
+                            Username</button>
+                        <div class="form-group">
+                            <label for="email">Mail</label>
+                            <!-- PARA MARCAR EL BORDE EN ROJO SE APLICA EL ESTILO CSS QUE DEFINI EN app.component.css -->
+                            <input type="email" id="email" class="form-control" ngModel name="email" required email
+                                #email="ngModel">
+                            <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid
+                                email</span>
+                        </div>
+                    </div>
+                    <p *ngIf="!userData.valid && userData.touched">User Data is invalid</p>
+                    <div class="form-group">
+                        <label for="secret">Secret Questions</label>
+                        <select id="secret" class="form-control" [ngModel]="selectQuestion" name="secret">
+                            <option value="pet">Your first Pet?</option>
+                            <option value="teacher">Your first teacher?</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="questionAnswer" rows="3" [(ngModel)]="answer"></textarea>
+                    </div>
+                    <p>Your reply: {{answer}}</p>
+                    <div class="radio" *ngFor="let gender of genders">
+                        <label>
+                            <input type="radio" name="gender" ngModel [value]="gender" required>{{gender}}
+                        </label>
+                    </div>
+                    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+                </form>
+            </div>
+            <hr>
+            <div class="row" *ngIf="submitted">
+                <div class="col-xs-12">
+                    <h3>Your Data</h3>
+                    <p>Username: {{user.username}}</p>
+                    <p>Mail: {{user.email}}</p>
+                    <p>Secret Question: {{user.secretQuestion}}</p>
+                    <p>Answer: {{user.answer}}</p>
+                    <p>Gender: {{user.gender}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h1>Tarea</h1>
+            <div>
+                <form (ngSubmit)="submitTaskForm()" #taskForm="ngForm">
+                    <div class="form-group">
+                        <label for="emailTask">Email</label>
+                        <input type="text" id="emailTask" class="form-control" ngModel name="emailTask" required email
+                            #emailTask="ngModel">
+                        <span class="help-block" *ngIf="!emailTask.valid && emailTask.touched">Please enter a valid
+                            email</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="subscription">Select subscription type</label>
+                        <select id="subscription" class="form-control" [ngModel]="subscriptionType" name="subscription">
+                            <option value="basic">Basic subscription</option>
+                            <option value="advanced">Advanced subscription</option>
+                            <option value="pro">Pro subscription</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" ngModel name="password" required
+                            #password="ngModel">
+                        <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a valid
+                            email</span>
+                    </div>
+                    <button class="btn btn-primary" type="submit" [disabled]="!taskForm.valid">Submit</button>
+                </form>
+            </div>
+            <hr>
+            <div class="alert alert-danger" *ngIf="!taskForm.valid && taskForm.touched">
+                <strong>Alert!</strong> Please complete the required fields.
+            </div>
+            <hr>
+            <div class="row" *ngIf="submittedTask">
+                <div class="col-xs-12">
+                    <h3>Your Info</h3>
+                    <p>Email: {{emailTaskSelected}}</p>
+                    <p>Subscription: {{subscriptionTaskSelected}}</p>
+                    <p>Password: {{passwordTaskSelected}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

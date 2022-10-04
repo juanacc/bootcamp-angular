@@ -1,6 +1,9 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { AuthTestComponent } from "./auth/auth-test.component";
+import { AuthGuard } from "./auth/auth.guard";
+import { FavoritesComponent } from "./favorites/favorites.component";
+import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.component";
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -11,6 +14,7 @@ const appRoutes: Routes = [
     { path: 'auth', loadChildren: () => import('./auth/authModule').then(x => x.AuthModule) },
     { path: 'supermarkets', loadChildren: () => import('./supermarkets/supermarket.module').then(x => x.SupermarketModule) },
     { path: 'auth-test', component: AuthTestComponent },
+    { path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard] },
 ]
 
 @NgModule({

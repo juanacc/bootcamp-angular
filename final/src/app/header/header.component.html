@@ -13,6 +13,9 @@
                 <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
                 <li routerLinkActive="active"><a routerLink="/supermarkets" *ngIf="isAuthenticated">Supermarkets</a>
                 </li>
+                <li routerLinkActive="active" *ngIf="isAuthenticated">
+                    <a routerLink="/favorites">My Favorites</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" appDropdown *ngIf="isAuthenticated">

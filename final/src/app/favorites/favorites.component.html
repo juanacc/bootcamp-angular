@@ -1,0 +1,23 @@
+<div *ngIf="isLoading" class="text-center">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="panel">
+    <div class="list-group-item clearfix row m-l-8 m-r-8 m-t-8 m-b-8"
+        *ngFor="let favorite of favoritesRecipes;let i = index">
+        <a style="cursor: pointer;" [routerLink]="['/recipes',i]">
+            <div class="pull-left">
+                <h4 class="list-group-item-heading">{{favorite.name}}</h4>
+                <p class="list-group-item-text">{{favorite.description}}</p>
+            </div>
+            <span class="pull-right">
+                <img [src]="favorite.imagePath" alt="{{favorite.name}}" class="img-responsive"
+                    style="max-height: 50px;">
+            </span>
+        </a>
+    </div>
+
+    <div *ngIf="!isLoading && favoritesRecipes.length == 0">
+        <p class="text-muted text-center" id="warning">There are no exist favorites</p>
+    </div>
+</div>

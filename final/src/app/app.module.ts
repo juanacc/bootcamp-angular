@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.modules';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
 import { AuthTestComponent } from './auth/auth-test.component';
+import { FavoritesModule } from './favorites/favorites.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AuthTestComponent } from './auth/auth-test.component';
     SharedModule,
     CoreModule,
     //AuthModule, se elimina de aca ya que implemente lazy loading. Ver modulo del componente
+    FavoritesModule
   ],
   bootstrap: [AppComponent]
 })

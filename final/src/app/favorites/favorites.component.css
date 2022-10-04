@@ -1,0 +1,9 @@
+.fa-solid {
+    color: red;
+}
+
+#warning {
+    padding: 20px;
+    background-color: mistyrose;
+    border: 1px solid red;
+}

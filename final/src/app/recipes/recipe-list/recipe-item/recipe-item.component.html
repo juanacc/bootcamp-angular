@@ -1,9 +1,17 @@
-<a class="list-group-item clearfix m-b-8" style="cursor: pointer;" routerLinkActive="active" [routerLink]="[index]">
-    <div class="pull-left">
-        <h4 class="list-group-item-heading">{{recipe.name}}</h4>
-        <p class="list-group-item-text">{{recipe.description}}</p>
-    </div>
-    <span class="pull-right">
-        <img [src]="recipe.imagePath" alt="{{recipe.name}}" class="img-responsive" style="max-height: 50px;">
+<div class="row list-group-item clearfix m-b-8 m-r-8 m-l-8">
+    <a style="cursor: pointer;" routerLinkActive="active" [routerLink]="[index]">
+        <div class="row p-l-8 p-r-8">
+            <div class="pull-left">
+                <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+                <p class="list-group-item-text">{{recipe.description}}</p>
+            </div>
+            <span class="pull-right">
+                <img [src]="recipe.imagePath" alt="{{recipe.name}}" class="img-responsive" style="max-height: 50px;">
+            </span>
+        </div>
+    </a>
+    <span class="pull-right p-r-8 p-t-8">
+        <i style="font-size:20px;cursor: pointer;" (click)="isFavorite(recipe)"
+            [ngClass]="{'fa-heart' : true, 'fa-regular': !recipe.isFavorite, 'fa-solid' : recipe.isFavorite}"></i>
     </span>
-</a>
+</div>
